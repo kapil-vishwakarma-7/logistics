@@ -14,7 +14,7 @@ class ShipmentController extends Controller
      */
     public function index()
     {
-            
+        return view('showshipment');
     }
 
     /**
@@ -81,5 +81,8 @@ class ShipmentController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function filter(Request $request){
+
     }
 }

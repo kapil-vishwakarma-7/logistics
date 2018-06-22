@@ -35,7 +35,7 @@ class ContainerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $c = new Container;
     }
 
     /**
@@ -46,7 +46,7 @@ class ContainerController extends Controller
      */
     public function show($id)
     {
-        //
+        return Container::all();
     }
 
     /**
