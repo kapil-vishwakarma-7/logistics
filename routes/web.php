@@ -17,13 +17,15 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('shipment',function(){
-	return view('shipment');
-});
 
-Route::get('container',function(){
-	
-	return view('newcontainer');
-});
+Route::resource('shipment','ShipmentController');
+Route::resource('container','ContainerController');
+
+
+
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+
+
