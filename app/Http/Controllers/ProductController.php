@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+
 class ProductController extends Controller
 {
     /**
@@ -12,8 +13,9 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
+    {   
+        $p = Product::paginate($id);
+        return view('showproducts',['products'=>$p]);
     }
 
     /**
@@ -23,7 +25,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('newproducts');
     }
 
     /**
@@ -34,7 +36,13 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $p = new Product;
+        $p->product_name  = $request->product_name ;
+        $p->weight  = $request->weight ;
+        $p->quantity  = $request->quantity ;
+        $p->each_cost  = $request->each_cost ;
+        $p->total  = $request->total;
+        $p->save();
     }
 
     /**
@@ -45,7 +53,8 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $p = Product::find($id);
+        return view('showproduct',['product'=>$p]);
     }
 
     /**
@@ -56,7 +65,8 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $p = Product::find($id);
+        return view('editproduct',['product'=>$p]);
     }
 
     /**
@@ -68,8 +78,14 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-    }
+        $p = Product::find($id);
+        $p->product_name  = $request->product_name ;
+        $p->weight  = $request->weight ;
+        $p->quantity  = $request->quantity ;
+        $p->each_cost  = $request->each_cost ;
+        $p->total  = $request->total;
+        $p->save();
+      }
 
     /**
      * Remove the specified resource from storage.
@@ -79,6 +95,10 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $p = Product::find($id);
+        $p->delete();
+    }
+    public function filter(){
+        
     }
 }

@@ -14,7 +14,7 @@ class ShipmentController extends Controller
      */
     public function index()
     {
-        return view('showshipment');
+        return view('showshipments');
     }
 
     /**
@@ -35,7 +35,29 @@ class ShipmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $s = new Shipment;
+        $s->sender_name = $request->sender_name;
+        $s->sender_contact  = $request->sender_contact ;
+        $s->receiver_name  = $request->receiver_name ;
+        $s->receiver_contact  = $request->receiver_contact ;
+        $s->assign_staff  = $request->assign_staff ;
+        $s->airway_bill_no  = $request->airway_bill_no ;
+        $s->sender_email  = $request->sender_email ;
+        $s->receiver_email  = $request->receiver_email ;
+        $s->sender_add  = $request->sender_add ;
+        $s->receiver_add  = $request->receiver_add ;
+        $s->sender_city  = $request->sender_city ;
+        $s->receiver_city  = $request->receiver_city ;
+        $s->total_weight  = $request->total_weight ;
+        $s->shipment_type  = $request->shipment_type ;
+        $s->delivery_date  = $request->delivery_date ;
+        $s->delivery_time  = $request->delivery_time ;
+        $s->pay_mode  = $request->pay_mode ;
+        $s->total_fright  = $request->total_fright ;
+        $s->booking_mode  = $request->booking_mode ;
+        $s->insurance_status = $request->insurance_status ;
+        $s->save();
+
     }
 
     /**
@@ -46,7 +68,8 @@ class ShipmentController extends Controller
      */
     public function show($id)
     {
-        //
+        $s = Shipment::find($id);   
+        return view('showshipment',['shipment'=>$s]);
     }
 
     /**
@@ -57,7 +80,9 @@ class ShipmentController extends Controller
      */
     public function edit($id)
     {
-        //
+     
+        $s = Shipment::find($id);   
+        return view('editshipment',['shipment'=>$s]);
     }
 
     /**
@@ -69,7 +94,28 @@ class ShipmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $s = Shipment::find($id);
+        $s->sender_name = $request->sender_name;
+        $s->sender_contact  = $request->sender_contact ;
+        $s->receiver_name  = $request->receiver_name ;
+        $s->receiver_contact  = $request->receiver_contact ;
+        $s->assign_staff  = $request->assign_staff ;
+        $s->airway_bill_no  = $request->airway_bill_no ;
+        $s->sender_email  = $request->sender_email ;
+        $s->receiver_email  = $request->receiver_email ;
+        $s->sender_add  = $request->sender_add ;
+        $s->receiver_add  = $request->receiver_add ;
+        $s->sender_city  = $request->sender_city ;
+        $s->receiver_city  = $request->receiver_city ;
+        $s->total_weight  = $request->total_weight ;
+        $s->shipment_type  = $request->shipment_type ;
+        $s->delivery_date  = $request->delivery_date ;
+        $s->delivery_time  = $request->delivery_time ;
+        $s->pay_mode  = $request->pay_mode ;
+        $s->total_fright  = $request->total_fright ;
+        $s->booking_mode  = $request->booking_mode ;
+        $s->insurance_status = $request->insurance_status ;
+        $s->save();
     }
 
     /**
@@ -80,7 +126,7 @@ class ShipmentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Shipment::destroy($id);
     }
     public function filter(Request $request){
 

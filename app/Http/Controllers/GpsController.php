@@ -68,7 +68,8 @@ class GpsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $g = Gps::find($id);
+        return view('editgps',['gps'=>$g]);
     }
 
     /**
@@ -101,5 +102,9 @@ class GpsController extends Controller
     public function destroy($id)
     {
         Gps::destroy($id);
+    }
+
+    public function filter(Request $request){
+
     }
 }
