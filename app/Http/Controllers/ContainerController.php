@@ -14,7 +14,8 @@ class ContainerController extends Controller
      */
     public function index()
     {
-        //
+        $c = Container::paginate(10)->get();
+        return view('showcontainer',['containers'=>$c]);
     }
 
     /**
@@ -36,6 +37,15 @@ class ContainerController extends Controller
     public function store(Request $request)
     {
         $c = new Container;
+        $c->container_no = $request->container_no;
+        $c->agent_name = $request->agent_name;
+        $c->origin_port = $request->origin_port;
+        $c->destination_port = $request->destination_port;
+        $c->contact  = $request->contact;
+        $c->passport  = $request->passport;
+        $c->delivery_agent  = $request->delivery_agent;
+        $c->delivery_contact  = $request->delivery_contact;
+        $c->save();
     }
 
     /**
@@ -46,7 +56,7 @@ class ContainerController extends Controller
      */
     public function show($id)
     {
-        return Container::all();
+        return Container::find($id);
     }
 
     /**
@@ -57,7 +67,8 @@ class ContainerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $c = Container::find($id);
+        return view('editcontainer',['container'=>$c]);
     }
 
     /**
@@ -69,7 +80,16 @@ class ContainerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $c = Container::find($id);
+        $c->container_no = $request->container_no;
+        $c->agent_name = $request->agent_name;
+        $c->origin_port = $request->origin_port;
+        $c->destination_port = $request->destination_port;
+        $c->contact  = $request->contact;
+        $c->passport  = $request->passport;
+        $c->delivery_agent  = $request->delivery_agent;
+        $c->delivery_contact  = $request->delivery_contact;
+        $c->save();
     }
 
     /**
@@ -80,6 +100,7 @@ class ContainerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Container::destroy($id);
     }
+
 }

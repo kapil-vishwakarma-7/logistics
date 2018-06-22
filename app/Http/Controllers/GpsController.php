@@ -14,7 +14,8 @@ class GpsController extends Controller
      */
     public function index()
     {
-        //
+        $gps = Gps::paginate(10);
+        return view('showgps',['gps'=>$gps]);
     }
 
     /**
@@ -24,7 +25,7 @@ class GpsController extends Controller
      */
     public function create()
     {
-        //
+        return view('newgps');
     }
 
     /**
@@ -35,7 +36,16 @@ class GpsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $g = new Gps;
+        $g->gps_status = $request->gps_status;
+        $g->vendor = $request->vendor;
+        $g->gps_date  = $request->gps_date ;
+        $g->gps_time  = $request->gps_time ;
+        $g->vehicle_no  = $request->vehicle_no ;
+        $g->gps_no  = $request->gps_no ;
+        $g->excepted_date  = $request->excepted_date ;
+        $g->travel_mode  = $request->travel_mode ;
+        $g->save();
     }
 
     /**
@@ -46,7 +56,8 @@ class GpsController extends Controller
      */
     public function show($id)
     {
-        //
+        $g = Gps::find($id);
+        return view('show')
     }
 
     /**
@@ -69,7 +80,16 @@ class GpsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $g = Gps::find($id);
+        $g->gps_status = $request->gps_status;
+        $g->vendor = $request->vendor;
+        $g->gps_date  = $request->gps_date ;
+        $g->gps_time  = $request->gps_time ;
+        $g->vehicle_no  = $request->vehicle_no ;
+        $g->gps_no  = $request->gps_no ;
+        $g->excepted_date  = $request->excepted_date ;
+        $g->travel_mode  = $request->travel_mode ;
+        $g->save();
     }
 
     /**
@@ -80,6 +100,6 @@ class GpsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Gps::destroy($id);
     }
 }
